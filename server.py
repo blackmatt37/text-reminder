@@ -8,8 +8,8 @@ import wolframalpha
 appid = '8K6X8G-EJTYLE4A5X'
 def getTime(timeString):
 	client = wolframalpha.Client(appid)
-    res = client.query(timeString)
-    return int(res.pods[1].text.split(" ")[0])
+	res = client.query(timeString)
+	return int(res.pods[1].text.split(" ")[0])
 
 class TextRequestHandler(tornado.web.RequestHandler):
 	def get(self):
