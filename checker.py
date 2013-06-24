@@ -34,7 +34,7 @@ while True:
 				doc['done'] = 'true'
 				db[row.id] = doc
 				sendMessage(row.value, row.key)
-				print("MES SENT   " + strftime("%Y-%m-%d %H:%M:%S", gmtime()) + " number: " + row.key  + "            message: " + row.value)
+				print("MESS SENT   " + strftime("%Y-%m-%d %H:%M:%S", gmtime()) + " number: " + row.key  + "            message: " + row.value)
 				sys.stdout.flush()
 			else:
 				second.append(row)
