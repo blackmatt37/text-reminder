@@ -42,7 +42,9 @@ class TextRequestHandler(tornado.web.RequestHandler):
 		entry = {}
 		entry['number'] = number
 		split = message.split("... ")
-		time = getTime("convert " + split[0] + "UTC" + zone + " to unix time")
+		tstring = "convert " + split[0] + "UTC" + zone + " to unix time"
+		print tstring
+		time = getTime(tstring)
 		entry['time'] = time
 		entry['message'] = split[1]
 		entry['done'] = "false"
