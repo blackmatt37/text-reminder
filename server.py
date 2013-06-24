@@ -5,7 +5,10 @@ import twilio.twiml
 
 class TextRequestHandler(tornado.web.RequestHandler):
 	def get(self):
-		self.write("hello")
+		message = str(self.get_argument("Body"))
+		resp = twilio.twiml.Response()
+		resp.sms(message)
+		self.write(str(resp))
 	def post(self):
 		self.write("hello")
 
