@@ -2,10 +2,30 @@ import tornado.ioloop
 import tornado.web
 from twilio.rest import TwilioRestClient
 import twilio.twiml
+import couchdb
+import wolframalpha
+
+appid = '8K6X8G-EJTYLE4A5X'
+def getTime(timeString):
+    client = wolframalpha.Client(appid)
+    res = client.query(timeString)
+    print res.pods[1].text
+    return int(res.pods[1].text.split(" ")[0])
 
 class TextRequestHandler(tornado.web.RequestHandler):
 	def get(self):
+		server = couchdb.client.Server("http://23.21.135.161:5984/")
+		db = server['texter']
 		message = str(self.get_argument("Body"))
+		print message
+		number = str(self.get_argument("From"))
+		entry = {}
+		entry['number'] = number
+		split = message.split(" ... ")
+		print split
+		entry['time'] = getTime("convert " + split[0] + " to unix time")
+		entry['message'] = split[1]
+		print entry
 		resp = twilio.twiml.Response()
 		resp.sms(message)
 		self.write(str(resp))
