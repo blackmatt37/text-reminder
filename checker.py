@@ -14,21 +14,21 @@ def sendMessage(message, number):
 while True:
 	server = couchdb.client.Server("http://23.21.135.161:5984/")
 	db = server['texter']
-    foreward = int(time()) + 60*advance
+	foreward = int(time()) + 60*advance
 	map_fun = '''function(doc) {
 		if(doc.time < ''' + str(foreward) + ''' && doc.done == "false") {
 			emit(doc.number, doc.message);
 		}
 	}'''
 	results = db.query(map_fun)
-    while int(time()) < foreward:
-	    for row in results.rows:
-		    #print int(time())
-            if int(row.id) < time():
-		        doc = db[row.id]
-		        doc['done'] = 'true'
-		        db[row.id] = doc
-		        sendMessage(row.value, row.key)
-        sleep(1)
-    if foreward > int(time()):
-	    sleep(foreward-int(time()))
+	while int(time()) < foreward:
+		for row in results.rows:
+			#print int(time())
+			if int(row.id) < time():
+				doc = db[row.id]
+				doc['done'] = 'true'
+				db[row.id] = doc
+				sendMessage(row.value, row.key)
+				sleep(1)
+	if foreward > int(time()):
+		sleep(foreward-int(time()))
