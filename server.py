@@ -34,6 +34,8 @@ class TextRequestHandler(tornado.web.RequestHandler):
 		message = str(self.get_argument("Body"))
 		number = str(self.get_argument("From"))
 		zipcode = str(self.get_argument("FromZip"))
+		print("GET REQUEST " + strftime("%Y-%m-%d %H:%M:%S", gmtime()) + " number: " + number  " zip: " + zipcode + " message: " + message)
+		sys.stdout.flush()
 		zone = timeZone(zipcode)
 		entry = {}
 		entry['number'] = number
