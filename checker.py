@@ -20,15 +20,19 @@ while True:
 			emit(doc.number, doc.message);
 		}
 	}'''
-	results = db.query(map_fun)
+	results = db.query(map_fun).rows
 	while int(time()) < foreward:
-		for row in results.rows:
+		second = []
+		for row in results:
 			#print int(time())
 			if int(row.id) < time():
 				doc = db[row.id]
 				doc['done'] = 'true'
 				db[row.id] = doc
 				sendMessage(row.value, row.key)
-				sleep(1)
+			else:
+				second.append(row)
+		results = second
+		sleep(1)
 	if foreward > int(time()):
 		sleep(foreward-int(time()))

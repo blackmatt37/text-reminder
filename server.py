@@ -4,6 +4,7 @@ from twilio.rest import TwilioRestClient
 import twilio.twiml
 import couchdb
 import wolframalpha
+import datetime
 
 appid = '8K6X8G-EJTYLE4A5X'
 def getTime(timeString):
@@ -26,7 +27,8 @@ class TextRequestHandler(tornado.web.RequestHandler):
 		entry['done'] = "false"
 		db[str(time)] = entry
 		resp = twilio.twiml.Response()
-		resp.sms("Recived")
+		formated = str(datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S'))
+		resp.sms("Text scheduled at " + formated)
 		self.write(str(resp))
 	def post(self):
 		self.write("hello")
