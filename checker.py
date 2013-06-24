@@ -27,4 +27,4 @@ while True:
 		db[row.id] = doc
 		#sendMessage(row.value, row.key)
 
-	sleep(15)
+	sleep(60*2)
