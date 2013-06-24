@@ -14,7 +14,7 @@ def getTime(timeString):
 
 class TextRequestHandler(tornado.web.RequestHandler):
 	def get(self):
-		server = couchdb.client.Server("http://23.21.135.161:5984/")
+		server = couchdb.client.Server()
 		db = server['texter']
 		message = str(self.get_argument("Body"))
 		number = str(self.get_argument("From"))

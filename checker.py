@@ -5,6 +5,7 @@ from twilio.rest import TwilioRestClient
 account_sid = 'AC954b92ab3aa3fe23cee06ae56b384019'
 auth_token = 'b037fe51ee05147c69c806d78b3d9e95'
 advance = 2
+
 def sendMessage(message, number):
 	client = TwilioRestClient(account_sid, auth_token)
 	message = client.sms.messages.create(to=number, from_="7039400998", body=message)
