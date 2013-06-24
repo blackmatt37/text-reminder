@@ -19,14 +19,14 @@ class TextRequestHandler(tornado.web.RequestHandler):
 		number = str(self.get_argument("From"))
 		entry = {}
 		entry['number'] = number
-		split = message.split(" ... ")
+		split = message.split("... ")
 		time = getTime("convert " + split[0] + " to unix time")
 		entry['time'] = time
 		entry['message'] = split[1]
 		entry['done'] = "false"
 		db[str(time)] = entry
 		resp = twilio.twiml.Response()
-		resp.sms(message)
+		resp.sms("Recived")
 		self.write(str(resp))
 	def post(self):
 		self.write("hello")
