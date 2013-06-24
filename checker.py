@@ -1,6 +1,9 @@
 import couchdb
 from time import time, sleep
 from twilio.rest import TwilioRestClient
+from time import gmtime, strftime
+import sys
+
 
 account_sid = 'AC954b92ab3aa3fe23cee06ae56b384019'
 auth_token = 'b037fe51ee05147c69c806d78b3d9e95'
@@ -31,7 +34,7 @@ while True:
 				doc['done'] = 'true'
 				db[row.id] = doc
 				sendMessage(row.value, row.key)
-				print("MES SENT   " + strftime("%Y-%m-%d %H:%M:%S", gmtime()) + " number: " + row.key  "            message: " + row.value)
+				print("MES SENT   " + strftime("%Y-%m-%d %H:%M:%S", gmtime()) + " number: " + row.key  + "            message: " + row.value)
 				sys.stdout.flush()
 			else:
 				second.append(row)
