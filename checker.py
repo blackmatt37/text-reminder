@@ -13,7 +13,7 @@ advance = 2
 def sendMessage(message, number):
 	"""Uses twilio to send an sms with message to number"""
 	client = TwilioRestClient(account_sid, auth_token)
-	message = client.sms.messages.create(to=number, from_="7039400998", body=message)
+	message = client.sms.messages.create(to=number, from_="PHONE NUMBER FROM TWILIO", body=message)
 
 # Connect to the local couchdb server. Running at http://localhost/:5984
 server = couchdb.client.Server()
