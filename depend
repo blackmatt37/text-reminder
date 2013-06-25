@@ -1,0 +1,1 @@
+sudo pip install couchdb wolframalpha unidecode twilio tornado
