@@ -26,8 +26,8 @@ def getTime(timeString, zone):
 
 def geocode(zipCode):
 	"""Returns the longitude and latitude given a zipcode"""
-    response = urlopen("https://geoservices.tamu.edu/Services/Geocode/WebService/GeocoderWebServiceHttpNonParsed_V04_01.aspx?apiKey=" + geo_api + "&zip=" + zipCode + "&version=4.01").read().split(",")
-    return float(response[3]), float(response[4])
+	response = urlopen("https://geoservices.tamu.edu/Services/Geocode/WebService/GeocoderWebServiceHttpNonParsed_V04_01.aspx?apiKey=" + geo_api + "&zip=" + zipCode + "&version=4.01").read().split(",")
+	return float(response[3]), float(response[4])
 
 
 def timeZone(zipCode):
